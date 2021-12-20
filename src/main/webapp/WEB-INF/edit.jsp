@@ -16,6 +16,32 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="container2 m-4">
+		<div class="flex spaceBetween">	
+			<div>
+				<h1>Welcome</h1>
+			</div>
+			<div>
+				<a href="/logout">Logout</a>
+			</div>
+		</div>
+		<div>
+			<form:form action="/create" method="post" modelAttribute="new">
+				<input type="hidden" name="_method" value="put"/>
+				<form:input type="hidden" path="id" />
+			
+			<div class="flex flex-end">
+				<button type="submit" class="btn btn2 btn-primary">Submit</button>
+			</div>	
+			</form:form>
+		</div>
+		<div>
+			<form action="/delete/id" method="post">
+				<input type="hidden" name="_method" value="delete">
+				<input type="submit" value="Delete">
+			</form>
+		</div>
 
+	</div>
 </body>
 </html>

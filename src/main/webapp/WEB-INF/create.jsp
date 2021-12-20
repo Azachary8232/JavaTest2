@@ -26,8 +26,13 @@
 			</div>
 		</div>
 		<div>
-		
-		
+			<form:form action="/create" method="post" modelAttribute="new">
+			
+			
+			<div class="flex flex-end">
+				<button type="submit" class="btn btn2 btn-primary">Submit</button>
+			</div>	
+			</form:form>
 		</div>
 
 	</div>

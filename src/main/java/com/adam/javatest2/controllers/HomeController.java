@@ -64,7 +64,7 @@ public class HomeController {
 			return "redirect:/";
 		}
     	
-    	return "create.jsp";
+    	return "edit.jsp";
     }
     
     
