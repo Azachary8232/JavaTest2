@@ -16,6 +16,35 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<div class="container2 m-4">
+		<div class="flex spaceBetween">	
+			<div>
+				<h1>Welcome</h1>
+			</div>
+			<div>
+				<a href="/logout">Logout</a>
+			</div>
+		</div>
+		<div class="my-5">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<td>SAMPLE</td>
+						<td>SAMPLE</td>
+						<td>SAMPLE</td>
+						<td>SAMPLE</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SAMPLE</td>
+						<td>SAMPLE</td>
+						<td>SAMPLE</td>
+						<td>SAMPLE</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

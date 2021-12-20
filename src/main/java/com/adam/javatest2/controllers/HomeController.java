@@ -22,7 +22,7 @@ public class HomeController {
     private UserService userService;
 	
 	
-//			***Login/Registration***
+//			***Login and Registration***
     
     @GetMapping("/")
     public String index(Model model) {
@@ -56,10 +56,102 @@ public class HomeController {
     }
 	
 	
+//			***Dashboard***
+    
+    @GetMapping("/dashboard")
+    public String dashboard(HttpSession session, Model model) {
+		if(session.getAttribute("user_id") == null) {
+			return "redirect:/";
+		}
+    	
+    	return "create.jsp";
+    }
+    
+    
+    
+//    		***Create Page***
+    
+//    @GetMapping("/create")
+//    public String create(@ModelAttribute("newName") BabyName newName, HttpSession session, Model model) {
+//		if(session.getAttribute("user_id") == null) {
+//			return "redirect:/";
+//		}
+//    	return "create.jsp";
+//    }
+//    
+//    @PostMapping("/create")
+//    public String save(@Valid @ModelAttribute("newName") BabyName newName, BindingResult result, HttpSession session) {
+//		if(session.getAttribute("user_id") == null) {
+//			return "redirect:/";
+//		}
+//		if (result.hasErrors()) {
+//			return "create.jsp";
+//		}
+//		else {
+//			babyNameService.createBabyName(newName);
+//			return "redirect:/dashboard";
+//		}
+//    }
 	
-	
-	
-	
+    
+//	***Edit Page***
+    
+//@GetMapping("/edit/{id}")
+//public String edit(@ModelAttribute("editName") BabyName editName, @PathVariable("id")Long id, HttpSession session, Model model) {
+//if(session.getAttribute("user_id") == null) {
+//return "redirect:/";
+//}
+//model.addAttribute("editName", babyNameService.findBabyName(id));
+//
+//return "edit.jsp";
+//}
+//
+//@PutMapping("/edit/{id}")
+//public String editName(@Valid @ModelAttribute("editName") BabyName editName, BindingResult result, @PathVariable("id")Long id, HttpSession session, Model model) {
+//if(session.getAttribute("user_id") == null) {
+//return "redirect:/edit/{id}";
+//}
+//if(result.hasErrors()) {
+//return "edit.jsp";
+//}	
+//babyNameService.editBabyName(editName);
+//return "redirect:/dashboard";
+//}
+
+//	***Name Info Page***
+    
+//@GetMapping("names/{id}")
+//public String nameInfo(@PathVariable("id")Long id, HttpSession session, Model model) {
+//if(session.getAttribute("user_id") == null) {
+//	return "redirect:/";
+//}
+//User user = userService.findUser((Long)session.getAttribute("user_id"));
+//model.addAttribute("user", user);
+//model.addAttribute("name", babyNameService.findBabyName(id));
+//   	
+//return "info.jsp";
+//}
+
+//		***Logout***
+
+//@GetMapping("/logout")
+//public String clear(HttpSession session) {
+//session.invalidate();
+//return "redirect:/";
+//}
+
+//  ***Delete***
+    
+//  @RequestMapping("/delete/{id}")
+//  public String destroy(@PathVariable("id") Long id, HttpSession session) {
+//  	if(session.getAttribute("user_id") == null) {
+//  		return "redirect:/";
+//  	}
+//  	babyNameService.destroy(id);
+//  	
+//  	return "redirect:/dashboard";	    
+//  }
+
 	
 	
 	

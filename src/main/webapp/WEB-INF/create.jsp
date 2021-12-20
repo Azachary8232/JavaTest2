@@ -16,6 +16,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="container2 m-4">
+		<div class="flex spaceBetween">	
+			<div>
+				<h1>Welcome</h1>
+			</div>
+			<div>
+				<a href="/logout">Logout</a>
+			</div>
+		</div>
+		<div>
+		
+		
+		</div>
 
+	</div>
 </body>
 </html>
