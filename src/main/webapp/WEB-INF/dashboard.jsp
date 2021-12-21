@@ -19,7 +19,7 @@
 	<div class="container2 m-4">
 		<div class="flex spaceBetween">	
 			<div>
-				<h1>Welcome back, ${user.name }</h1>
+				<h1 class="gold">Welcome back, ${user.name }</h1>
 			</div>
 			<div>
 				<a href="/logout">Logout</a>
