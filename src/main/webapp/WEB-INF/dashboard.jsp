@@ -19,7 +19,7 @@
 	<div class="container2 m-4">
 		<div class="flex spaceBetween">	
 			<div>
-				<h1>Welcome back, SAMPLE</h1>
+				<h1>Welcome back, ${user.name }</h1>
 			</div>
 			<div>
 				<a href="/logout">Logout</a>
@@ -37,16 +37,23 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:forEach var="guest" items="${user.guest}">
 					<tr>
-						<td>SAMPLE</td>
-						<td>SAMPLE</td>
-						<td>SAMPLE</td>
-						<td>
-						<a href="">finished |</a>
-						<a href=""> edit |</a>
-						<a href=""> Give Up Table</a>
+						<td>${guest.name}</td>
+						<td>${guest.guests }</td>
+						<td>${guest.notes }</td>
+						<td class="flex">
+							<form action="/delete/${guest.id }" method="post">
+							    <input type="hidden" name="_method" value="delete">
+							    <input type="submit" value="Finished">
+							</form>
+							<h5 class="mx-3">|</h5>
+							<a href="/edit/${guest.id }"> edit </a>
+							<h5 class="mx-3">|</h5>
+							<a href=""> Give Up Table</a>
 						</td>
 					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

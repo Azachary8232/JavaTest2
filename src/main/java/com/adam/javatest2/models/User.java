@@ -1,9 +1,16 @@
 package com.adam.javatest2.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -13,6 +20,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="users")
 public class User {
+
+
 
 
 
@@ -36,6 +45,19 @@ public class User {
     @NotEmpty(message="Confirm Password is required!")
     @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
     private String confirm;
+    
+    
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    private List<Guest> guest;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "users_tables", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "table_id")
+    )
+    private List<Table> tables;
+    
     
     public User() {
 		
@@ -87,6 +109,23 @@ public class User {
 
 	public void setConfirm(String confirm) {
 		this.confirm = confirm;
+	}
+	
+
+	public List<Guest> getGuest() {
+		return guest;
+	}
+
+	public void setGuest(List<Guest> guest) {
+		this.guest = guest;
+	}
+
+	public List<Table> getTables() {
+		return tables;
+	}
+
+	public void setTables(List<Table> tables) {
+		this.tables = tables;
 	}
     
     

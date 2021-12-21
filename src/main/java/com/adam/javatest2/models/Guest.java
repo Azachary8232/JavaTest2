@@ -1,12 +1,18 @@
 package com.adam.javatest2.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -38,14 +44,29 @@ public class Guest {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
 	
+
+
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
+	
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "users_tables", 
+        joinColumns = @JoinColumn(name = "table_id"), 
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> users;
+	
 	
 	public Guest() {
 	}
 
-	public Guest(String name, Integer guests, String notes) {
+	public Guest(String name, Integer guests, String notes, Date createdAt) {
 		this.name = name;
 		this.guests = guests;
 		this.notes = notes;
+		this.createdAt = createdAt;
 	}
 
 	public Long getId() {
@@ -96,7 +117,21 @@ public class Guest {
 		this.updatedAt = updatedAt;
 	}
 	
-	
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 	
 	
 	

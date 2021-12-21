@@ -36,6 +36,10 @@ public class GuestService {
         }
     }
     
+//    public List<Guest> allGuestsById(Long id) {
+//        return guestRepository.findAllById(id);
+//    }
+    
 //  ***Update***
 
     public Guest editGuest(Guest guest) {
@@ -45,7 +49,9 @@ public class GuestService {
 //   ***Delete***
 	
 	
-	
+    public void destroy(Long id) {
+    	guestRepository.deleteById(id);
+	}
 	
 	
 	

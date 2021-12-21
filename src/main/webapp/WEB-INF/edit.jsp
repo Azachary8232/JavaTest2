@@ -19,18 +19,19 @@
 	<div class="container2 m-4">
 		<div class="flex spaceBetween">	
 			<div>
-				<h1>Welcome</h1>
+				<h1>Edit Table</h1>
 			</div>
 			<div>
 				<a href="/logout">Logout</a>
 			</div>
 		</div>
 		<div>
-			<form:form action="/create" method="post" modelAttribute="editTable">
+			<form:form action="/edit/${editName.id }" method="post" modelAttribute="editTable">
 				<input type="hidden" name="_method" value="put"/>
 				<form:input type="hidden" path="id" />
 							<h6>Guest name must be at least 2 letters</h6>
 				<div class="input-group mb-3">
+					<form:input type="hidden" path="user" value="${user_id }"/>
 				    <form:label class="input-group-text" path="name">Guest Name</form:label>
 				    <form:errors path="name"/>
 				    <form:input path="name" class="form-control"/>
@@ -66,7 +67,7 @@
 			</form:form>
 		</div>
 		<div>
-			<form action="/delete/id" method="post">
+			<form action="/delete/${editName.id }" method="post">
 				<input type="hidden" name="_method" value="delete">
 				<input type="submit" value="Delete">
 			</form>
