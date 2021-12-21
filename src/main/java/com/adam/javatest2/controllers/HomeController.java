@@ -64,7 +64,7 @@ public class HomeController {
 			return "redirect:/";
 		}
     	
-    	return "edit.jsp";
+    	return "dashboard.jsp";
     }
     
     
@@ -134,11 +134,11 @@ public class HomeController {
 
 //		***Logout***
 
-//@GetMapping("/logout")
-//public String clear(HttpSession session) {
-//session.invalidate();
-//return "redirect:/";
-//}
+	@GetMapping("/logout")
+	public String clear(HttpSession session) {
+	session.invalidate();
+	return "redirect:/";
+	}
 
 //  ***Delete***
     
