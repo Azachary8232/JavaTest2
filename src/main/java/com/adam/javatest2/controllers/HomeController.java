@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.adam.javatest2.models.Guest;
 import com.adam.javatest2.models.LoginUser;
 import com.adam.javatest2.models.User;
+import com.adam.javatest2.services.GuestService;
 import com.adam.javatest2.services.UserService;
 
 @Controller
@@ -20,7 +22,8 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
-	
+	@Autowired
+	GuestService guestService;
 	
 //			***Login and Registration***
     
@@ -71,27 +74,27 @@ public class HomeController {
     
 //    		***Create Page***
     
-//    @GetMapping("/create")
-//    public String create(@ModelAttribute("newName") BabyName newName, HttpSession session, Model model) {
-//		if(session.getAttribute("user_id") == null) {
-//			return "redirect:/";
-//		}
-//    	return "create.jsp";
-//    }
-//    
-//    @PostMapping("/create")
-//    public String save(@Valid @ModelAttribute("newName") BabyName newName, BindingResult result, HttpSession session) {
-//		if(session.getAttribute("user_id") == null) {
-//			return "redirect:/";
-//		}
-//		if (result.hasErrors()) {
-//			return "create.jsp";
-//		}
-//		else {
-//			babyNameService.createBabyName(newName);
-//			return "redirect:/dashboard";
-//		}
-//    }
+    @GetMapping("/create")
+    public String create(@ModelAttribute("newTable") Guest newTable, HttpSession session, Model model) {
+		if(session.getAttribute("user_id") == null) {
+			return "redirect:/";
+		}
+    	return "create.jsp";
+    }
+    
+    @PostMapping("/create")
+    public String save(@Valid @ModelAttribute("newTable") Guest newTable, BindingResult result, HttpSession session) {
+		if(session.getAttribute("user_id") == null) {
+			return "redirect:/";
+		}
+		if (result.hasErrors()) {
+			return "create.jsp";
+		}
+		else {
+			guestService.createGuest(newTable);
+			return "redirect:/dashboard";
+		}
+    }
 	
     
 //	***Edit Page***

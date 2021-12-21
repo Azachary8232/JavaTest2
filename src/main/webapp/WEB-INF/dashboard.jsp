@@ -19,20 +19,21 @@
 	<div class="container2 m-4">
 		<div class="flex spaceBetween">	
 			<div>
-				<h1>Welcome</h1>
+				<h1>Welcome back, SAMPLE</h1>
 			</div>
 			<div>
 				<a href="/logout">Logout</a>
 			</div>
 		</div>
 		<div class="my-5">
+			<h4>Your Tables</h4>
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<td>SAMPLE</td>
-						<td>SAMPLE</td>
-						<td>SAMPLE</td>
-						<td>SAMPLE</td>
+						<td>Guest Name</td>
+						<td># Guests</td>
+						<td>Arrived at</td>
+						<td>Actions</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,10 +41,20 @@
 						<td>SAMPLE</td>
 						<td>SAMPLE</td>
 						<td>SAMPLE</td>
-						<td>SAMPLE</td>
+						<td>
+						<a href="">finished |</a>
+						<a href=""> edit |</a>
+						<a href=""> Give Up Table</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>
+		</div>
+		<div>
+			<a href="">See Other Tables</a>
+		</div>
+		<div>
+			<a href="/create" class="btn btn2 btn-primary">+ new table</a>
 		</div>
 	</div>
 </body>

@@ -14,17 +14,15 @@ import javax.validation.constraints.Size;
 @Table(name="users")
 public class User {
 
-    @Id
+
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-    @NotEmpty(message="A first name is required!")
-    @Size(min=1, max=30, message="First Name must be between 1 and 30 characters")
-    private String firstName;
-	
-    @NotEmpty(message="A last name is required!")
-    @Size(min=1, max=30, message="Last Name must be between 1 and 30 characters")
-    private String lastName;
+    @NotEmpty(message="A name is required!")
+    @Size(min=1, max=30, message="Name must be between 1 and 30 characters")
+    private String name;
 	
     @NotEmpty(message="Email is required!")
     @Email(message="Please enter a valid email!")
@@ -43,9 +41,8 @@ public class User {
 		
 	}
 
-	public User(String firstName, String lastName, String email) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public User(String name, String email) {
+		this.name = name;
 		this.email = email;
 	}
 	
@@ -60,20 +57,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+    public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
