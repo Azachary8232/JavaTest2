@@ -41,7 +41,7 @@
 					<tr>
 						<td>${guest.name}</td>
 						<td>${guest.guests }</td>
-						<td>${guest.notes }</td>
+						<td>${guest.arrival }</td>
 						<td class="flex">
 							<form action="/delete/${guest.id }" method="post">
 							    <input type="hidden" name="_method" value="delete">
@@ -50,7 +50,7 @@
 							<h5 class="mx-3">|</h5>
 							<a href="/edit/${guest.id }"> edit </a>
 							<h5 class="mx-3">|</h5>
-							<a href=""> Give Up Table</a>
+							<a href="/decline/${guest.id }"> Give Up Table</a>
 						</td>
 					</tr>
 					</c:forEach>
@@ -58,7 +58,7 @@
 			</table>
 		</div>
 		<div>
-			<a href="">See Other Tables</a>
+			<a href="/tables">See Other Tables</a>
 		</div>
 		<div>
 			<a href="/create" class="btn btn2 btn-primary">+ new table</a>

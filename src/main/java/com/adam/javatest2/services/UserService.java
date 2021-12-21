@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.adam.javatest2.models.Guest;
 import com.adam.javatest2.models.LoginUser;
 import com.adam.javatest2.models.User;
+import com.adam.javatest2.repositories.GuestRepository;
 import com.adam.javatest2.repositories.UserRepository;
 
 @Service
@@ -16,6 +18,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private GuestService guestService;
     
     public User register(User newUser, BindingResult result) {
         if(userRepository.findByEmail(newUser.getEmail()).isPresent()) {
@@ -63,6 +67,16 @@ public class UserService {
         }
     }
     
+    
+    
+    
+    public void pickupGuest(Long guestId, Long userId) {
+    	Guest guest = guestService.findGuest(guestId);
+    	User user = findUser(userId);
+    	user.getGuests().add(guest);
+    	userRepository.save(user);
+    	
+    }
     
 	
 }

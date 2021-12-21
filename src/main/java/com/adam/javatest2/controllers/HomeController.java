@@ -1,5 +1,8 @@
 package com.adam.javatest2.controllers;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -76,6 +79,17 @@ public class HomeController {
     	return "dashboard.jsp";
     }
     
+    @GetMapping("/decline/{id}")
+    public String decline(@PathVariable("id")Long id, HttpSession session) {
+    	if(session.getAttribute("user_id") == null) {
+    		return "redirect:/";
+    	}
+    	guestService.declineGuest(id);
+    	System.out.println("!!!!!!!!");
+    	
+    	return "redirect:/dashboard";
+    }
+    
     
     
 //    		***Create Page***
@@ -85,7 +99,10 @@ public class HomeController {
 		if(session.getAttribute("user_id") == null) {
 			return "redirect:/";
 		}
-		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd HH:mm");
+		LocalDateTime now = LocalDateTime.now();  
+		model.addAttribute("time", dtf.format(now));
+		System.out.println("!!!!" + now);
     	return "create.jsp";
     }
     
@@ -111,7 +128,10 @@ public class HomeController {
 	if(session.getAttribute("user_id") == null) {
 	return "redirect:/";
 	}
-	model.addAttribute("editName", guestService.findGuest(id));
+	model.addAttribute("editTable", guestService.findGuest(id));
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd HH:mm");
+	LocalDateTime now = LocalDateTime.now();  
+	model.addAttribute("time", dtf.format(now));
 	
 	return "edit.jsp";
 	}
@@ -127,20 +147,46 @@ public class HomeController {
 	guestService.editGuest(editTable);
 	return "redirect:/dashboard";
 	}
+	
+	
+	
+	
 
-//	***Name Info Page***
+//	***Declined Table INFO Page***
     
-//@GetMapping("names/{id}")
-//public String nameInfo(@PathVariable("id")Long id, HttpSession session, Model model) {
-//if(session.getAttribute("user_id") == null) {
-//	return "redirect:/";
-//}
-//User user = userService.findUser((Long)session.getAttribute("user_id"));
-//model.addAttribute("user", user);
-//model.addAttribute("name", babyNameService.findBabyName(id));
-//   	
-//return "info.jsp";
-//}
+	@GetMapping("/tables")
+	public String nameInfo(HttpSession session, Model model) {
+	if(session.getAttribute("user_id") == null) {
+		return "redirect:/";
+	}
+	
+	model.addAttribute("tables", guestService.allGuestsNull());	   	
+	return "info.jsp";
+	}
+	
+	
+	@GetMapping("/pickup/{id}")
+	public String pickup(@PathVariable("id")Long id, HttpSession session) {
+    	if(session.getAttribute("user_id") == null) {
+    		return "redirect:/";
+    	}
+    	User user = userService.findUser((Long)session.getAttribute("user_id"));  
+    	guestService.pickupGuest(id, user);
+    	
+    	
+//    	Long userId = ((Long)session.getAttribute("user_id"));    	
+//    	userService.pickupGuest(id, userId);
+    	
+    	return"redirect:/tables";
+
+    }
+
+		
+	
+	
+	
+	
+	
 
 //		***Logout***
 

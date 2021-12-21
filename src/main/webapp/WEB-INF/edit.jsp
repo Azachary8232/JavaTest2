@@ -26,10 +26,11 @@
 			</div>
 		</div>
 		<div>
-			<form:form action="/edit/${editName.id }" method="post" modelAttribute="editTable">
+			<form:form action="/edit/${editTable.id }" method="post" modelAttribute="editTable">
 				<input type="hidden" name="_method" value="put"/>
 				<form:input type="hidden" path="id" />
-							<h6>Guest name must be at least 2 letters</h6>
+				<h6>Guest name must be at least 2 letters</h6>
+				<form:input type="hidden" path="arrival" value="${time }"/>
 				<div class="input-group mb-3">
 					<form:input type="hidden" path="user" value="${user_id }"/>
 				    <form:label class="input-group-text" path="name">Guest Name</form:label>
@@ -67,7 +68,7 @@
 			</form:form>
 		</div>
 		<div>
-			<form action="/delete/${editName.id }" method="post">
+			<form action="/delete/${editTable.id }" method="post">
 				<input type="hidden" name="_method" value="delete">
 				<input type="submit" value="Delete">
 			</form>

@@ -31,6 +31,7 @@
 				<div class="input-group mb-3">
 
 					<form:input type="hidden" path="user" value="${user_id }"/>
+					<form:input type="hidden" path="arrival" value="${time }"/>
 				    <form:label class="input-group-text" path="name">Guest Name</form:label>
 				    <form:errors path="name"/>
 				    <form:input path="name" class="form-control"/>

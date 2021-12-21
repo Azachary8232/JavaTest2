@@ -36,7 +36,8 @@ public class Guest {
 	@NotNull
 	@Size(min = 0, max = 200, message="Insert any notes")
  	private String notes;
-	
+	@DateTimeFormat(pattern="MM-dd HH:mm")
+	private Date arrival;
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -52,8 +53,8 @@ public class Guest {
 	
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-        name = "users_tables", 
-        joinColumns = @JoinColumn(name = "table_id"), 
+        name = "users_guests", 
+        joinColumns = @JoinColumn(name = "guest_id"), 
         inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private List<User> users;
@@ -62,11 +63,11 @@ public class Guest {
 	public Guest() {
 	}
 
-	public Guest(String name, Integer guests, String notes, Date createdAt) {
+	public Guest(String name, Integer guests, String notes, Date arrival) {
 		this.name = name;
 		this.guests = guests;
 		this.notes = notes;
-		this.createdAt = createdAt;
+		this.arrival = arrival;
 	}
 
 	public Long getId() {
@@ -131,6 +132,14 @@ public class Guest {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	public Date getArrival() {
+		return arrival;
+	}
+
+	public void setArrival(Date arrival) {
+		this.arrival = arrival;
 	}
 	
 	

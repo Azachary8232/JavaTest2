@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.adam.javatest2.models.Guest;
+import com.adam.javatest2.models.User;
 
 @Repository
 public interface GuestRepository extends CrudRepository<Guest, Long> {
@@ -17,7 +18,7 @@ public interface GuestRepository extends CrudRepository<Guest, Long> {
 	
 //  ***Retrieve***
 
-
+    List<Guest> findByUser(User user);
 //  ***Update***
 
 

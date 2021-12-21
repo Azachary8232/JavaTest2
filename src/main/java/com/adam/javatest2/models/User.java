@@ -47,16 +47,20 @@ public class User {
     private String confirm;
     
     
+    
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<Guest> guest;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-        name = "users_tables", 
+        name = "users_guests", 
         joinColumns = @JoinColumn(name = "user_id"), 
-        inverseJoinColumns = @JoinColumn(name = "table_id")
+        inverseJoinColumns = @JoinColumn(name = "guest_id")
     )
-    private List<Table> tables;
+    
+    
+    
+    private List<Guest> guests;
     
     
     public User() {
@@ -120,13 +124,15 @@ public class User {
 		this.guest = guest;
 	}
 
-	public List<Table> getTables() {
-		return tables;
+	public List<Guest> getGuests() {
+		return guests;
 	}
 
-	public void setTables(List<Table> tables) {
-		this.tables = tables;
+	public void setGuests(List<Guest> guests) {
+		this.guests = guests;
 	}
+
+
     
     
     

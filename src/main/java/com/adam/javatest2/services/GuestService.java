@@ -1,11 +1,13 @@
 package com.adam.javatest2.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.adam.javatest2.models.Guest;
+import com.adam.javatest2.models.User;
 import com.adam.javatest2.repositories.GuestRepository;
 
 @Service
@@ -36,15 +38,31 @@ public class GuestService {
         }
     }
     
-//    public List<Guest> allGuestsById(Long id) {
-//        return guestRepository.findAllById(id);
-//    }
+    public List<Guest> allGuestsNull() {
+        return guestRepository.findByUser(null);
+    }
     
 //  ***Update***
 
     public Guest editGuest(Guest guest) {
         return guestRepository.save(guest);
     }
+    
+    
+    public void declineGuest(Long id) {
+    	Guest guest = findGuest(id);
+    	guest.setUser(null);
+    	guestRepository.save(guest);
+    }
+    
+    public void pickupGuest(Long id, User user) {
+    	Guest guest = findGuest(id); 	
+    	guest.setUser(user);
+    	guestRepository.save(guest);
+    }
+    
+
+    
 
 //   ***Delete***
 	

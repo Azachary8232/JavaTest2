@@ -16,6 +16,46 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<div class="container2">
+		<div class="flex spaceBetween">	
+			<div>
+				<h1>Open Tables</h1>
+			</div>
+			<div>
+				<a href="/dashboard">home</a>
+			</div>
+		</div>
+		<div>
+			<h6>Tables</h6>	
+		</div>
+		<div class="my-5">
+			<h4>Tables</h4>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<td>Guest Name</td>
+						<td># Guests</td>
+						<td>Arrived at</td>
+						<td>Actions</td>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="table" items="${tables}">
+					<tr>
+						<td>${table.name}</td>
+						<td>${table.guests }</td>
+						<td>${table.arrival }</td>
+						<td>
+							<a href="/pickup/${table.id }">Pickup Table</a>
+						</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	
+	
+	
+	</div>
 </body>
 </html>
